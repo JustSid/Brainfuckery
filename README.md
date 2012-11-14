@@ -1,4 +1,4 @@
-Brainfuckery is a extendable Brainfuck interpreter written in Objective-C. In theory, Brainfuckery can be taught all Brainfuck dialects by subclassing the `BFInterpreter` class and overwriting the `executeCharacter:` and `validCharacters` methods. There is a subclass implementing Extended Brainfuck Type I as an example for this.
+Brainfuckery is a extendable Brainfuck interpreter written in Objective-C. In theory, Brainfuckery can be taught all Brainfuck dialects by subclassing the `BFInterpreter` class and overwriting the `executeCharacter:` and `validCharacters` methods. There is a subclass implementing Extended Brainfuck Type I and Type II as an example for this.
 
 ## Example
 The classical Brainfuck hello world script

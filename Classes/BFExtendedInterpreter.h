@@ -13,6 +13,7 @@ typedef enum
 {
     kBFExtendedInterpreterDialectClassic,
     kBFExtendedInterpreterDialectTypeI, // http://esolangs.org/wiki/Extended_Brainfuck#Extended_Type_I
+    kBFExtendedInterpreterDialectTypeII, // http://esolangs.org/wiki/Extended_Brainfuck#Extended_Type_II
 } BFExtendedInterpreterType;
 
 @interface BFExtendedInterpreter : BFInterpreter
