@@ -40,7 +40,7 @@ int main(int argc, const char *argv[])
                 else
                 {
                     NSError *error;
-                    NSString *path = [[NSString stringWithUTF8String:argv[1]] stringByExpandingTildeInPath];
+                    NSString *path = [[NSString stringWithUTF8String:argv[i]] stringByExpandingTildeInPath];
                     
                     script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
                     
