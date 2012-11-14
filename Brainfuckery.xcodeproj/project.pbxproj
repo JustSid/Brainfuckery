@@ -1,0 +1,247 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E917942E1652FD0400130CD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E917942D1652FD0400130CD0 /* Foundation.framework */; };
+		E917943D1652FD3300130CD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E917943C1652FD3300130CD0 /* main.m */; };
+		E91794401652FD6300130CD0 /* BFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = E917943F1652FD6300130CD0 /* BFInterpreter.m */; };
+		E9179444165317F300130CD0 /* BFExtendedInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9179443165317F300130CD0 /* BFExtendedInterpreter.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E91794281652FD0400130CD0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E917942A1652FD0400130CD0 /* Brainfuckery */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Brainfuckery; sourceTree = BUILT_PRODUCTS_DIR; };
+		E917942D1652FD0400130CD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E917943C1652FD3300130CD0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E917943E1652FD6300130CD0 /* BFInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFInterpreter.h; sourceTree = "<group>"; };
+		E917943F1652FD6300130CD0 /* BFInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFInterpreter.m; sourceTree = "<group>"; };
+		E9179442165317F300130CD0 /* BFExtendedInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFExtendedInterpreter.h; sourceTree = "<group>"; };
+		E9179443165317F300130CD0 /* BFExtendedInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFExtendedInterpreter.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E91794271652FD0400130CD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E917942E1652FD0400130CD0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E91794211652FD0400130CD0 = {
+			isa = PBXGroup;
+			children = (
+				E917943C1652FD3300130CD0 /* main.m */,
+				E917943B1652FD3300130CD0 /* Classes */,
+				E917942C1652FD0400130CD0 /* Frameworks */,
+				E917942B1652FD0400130CD0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E917942B1652FD0400130CD0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E917942A1652FD0400130CD0 /* Brainfuckery */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E917942C1652FD0400130CD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E917942D1652FD0400130CD0 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E917943B1652FD3300130CD0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E917943E1652FD6300130CD0 /* BFInterpreter.h */,
+				E917943F1652FD6300130CD0 /* BFInterpreter.m */,
+				E9179442165317F300130CD0 /* BFExtendedInterpreter.h */,
+				E9179443165317F300130CD0 /* BFExtendedInterpreter.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E91794291652FD0400130CD0 /* Brainfuckery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E91794381652FD0400130CD0 /* Build configuration list for PBXNativeTarget "Brainfuckery" */;
+			buildPhases = (
+				E91794261652FD0400130CD0 /* Sources */,
+				E91794271652FD0400130CD0 /* Frameworks */,
+				E91794281652FD0400130CD0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Brainfuckery;
+			productName = Brainfuckery;
+			productReference = E917942A1652FD0400130CD0 /* Brainfuckery */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E91794221652FD0400130CD0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = widerwille;
+			};
+			buildConfigurationList = E91794251652FD0400130CD0 /* Build configuration list for PBXProject "Brainfuckery" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E91794211652FD0400130CD0;
+			productRefGroup = E917942B1652FD0400130CD0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E91794291652FD0400130CD0 /* Brainfuckery */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E91794261652FD0400130CD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E917943D1652FD3300130CD0 /* main.m in Sources */,
+				E91794401652FD6300130CD0 /* BFInterpreter.m in Sources */,
+				E9179444165317F300130CD0 /* BFExtendedInterpreter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E91794361652FD0400130CD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_STRICT_ALIASING = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E91794371652FD0400130CD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_STRICT_ALIASING = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E91794391652FD0400130CD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E917943A1652FD0400130CD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E91794251652FD0400130CD0 /* Build configuration list for PBXProject "Brainfuckery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91794361652FD0400130CD0 /* Debug */,
+				E91794371652FD0400130CD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E91794381652FD0400130CD0 /* Build configuration list for PBXNativeTarget "Brainfuckery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91794391652FD0400130CD0 /* Debug */,
+				E917943A1652FD0400130CD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E91794221652FD0400130CD0 /* Project object */;
+}
