@@ -20,14 +20,14 @@
 
 @interface BFLoopEntry : NSObject
 {
-    NSUInteger begin;
-    NSUInteger end;
+    uint8_t *begin;
+    uint8_t *end;
 }
 
-@property (nonatomic, readonly) NSUInteger begin;
-@property (nonatomic, readonly) NSUInteger end;
+@property (nonatomic, readonly) uint8_t *begin;
+@property (nonatomic, readonly) uint8_t *end;
 
-- (id)initWithScript:(NSString *)script index:(NSUInteger)index andInterpreter:(BFInterpreter *)interpreter;
+- (id)initWithBegin:(uint8_t *)tbegin andEnd:(uint8_t *)tend;
 
 @end
 
@@ -48,7 +48,7 @@
 
 
 @implementation BFInterpreter
-@synthesize script, delegate;
+@synthesize delegate;
 @synthesize willInterpret, generatedOutput, needsInput;
 
 #pragma mark -
@@ -66,22 +66,7 @@
     return characters;
 }
 
-- (unichar)advanceToNextCharacter
-{
-    unichar character;
-    NSCharacterSet *characters = [self validCharacters];
-    
-    do {
-        if(index >= [script length])
-            return '\0';
-        
-        character = [script characterAtIndex:index ++];
-    } while(![characters characterIsMember:character]);
-    
-    return character;
-}
-
-- (BOOL)executeCharacter:(unichar)character
+- (BOOL)executeCharacter:(char)character
 {
     switch(character)
     {
@@ -136,20 +121,21 @@
             
         case '[':
         {
-            BFLoopEntry *entry = [[BFLoopEntry alloc] initWithScript:script index:index andInterpreter:self];
+            uint8_t *i = instruction;
+            while(*(i ++) != ']')
+            {}
             
             if(*pointer)
             {
-                index = [entry begin];
-                
+                BFLoopEntry *entry = [[BFLoopEntry alloc] initWithBegin:instruction andEnd:i];
+
                 [loopEntries addObject:entry];
                 [entry release];
                 
                 break;
             }
             
-            index = [entry end];
-            [entry release];
+            instruction = i;
         }
             break;
             
@@ -160,7 +146,7 @@
             
             if(*pointer)
             {
-                index = [entry begin];
+                instruction = [entry begin];
                 break;
             }
             
@@ -185,7 +171,7 @@
     
     @synchronized(self)
     {
-        unichar character = [self advanceToNextCharacter];
+        char character = (char)*(instruction ++);
         if(character != '\0')
         {
             if(delegateSupportsWillInterpret)
@@ -240,12 +226,27 @@
     
     @synchronized(self)
     {
-        [script release];
-        script = [tscript copy];
-        index = 0;
+        if(script)
+            free(script);
         
         pointer = memory;
         memset(memory, 0, memorySize);
+        
+        script = malloc([tscript length] + 1);
+        instruction = script;
+        
+        NSCharacterSet *allowedCharacters = [self validCharacters];
+        for(NSUInteger i=0; i<[tscript length]; i++)
+        {
+            unichar character = [tscript characterAtIndex:i];
+            
+            if([allowedCharacters characterIsMember:character])
+            {
+                *instruction ++ = (uint8_t)character;
+            }
+        }
+        
+        instruction = script;
     }
 }
 
@@ -302,7 +303,9 @@
     if(memory)
         free(memory);
     
-    [script release];
+    if(script)
+        free(script);
+    
     [loopEntries release];
     
     Block_release(willInterpret);
@@ -320,47 +323,12 @@
 @implementation BFLoopEntry
 @synthesize begin, end;
 
-- (id)initWithScript:(NSString *)script index:(NSUInteger)index andInterpreter:(BFInterpreter *)interpreter
+- (id)initWithBegin:(uint8_t *)tbegin andEnd:(uint8_t *)tend
 {
     if((self = [super init]))
     {
-        NSCharacterSet *characterSet = [interpreter validCharacters];
-        uint32_t openingBrackets = 1;
-        unichar character;
-        
-        begin = index;
-        character = [script characterAtIndex:begin];
-        
-        while(![characterSet characterIsMember:character])
-        {
-            begin ++;
-            character = [script characterAtIndex:begin];
-        }
-        
-        for(end = begin; ; end++)
-        {
-            NSAssert(end < [script length], @"BFLoopEntry could not find closing ']' in script");
-            character = [script characterAtIndex:end];
-            
-            switch (character)
-            {
-                case '[':
-                    openingBrackets ++;
-                    break;
-                    
-                case ']':
-                    openingBrackets --;
-                    if(openingBrackets == 0)
-                    {
-                        return self;
-                    }
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
+        begin = tbegin;
+        end = tend;
     }
     
     return self;

@@ -31,12 +31,11 @@ typedef char(^BFInterpreterCharacterInputBlock)();
     uint8_t *pointer;
     size_t memorySize;
     
-    NSString *script;
-    NSUInteger index;
+    uint8_t *script;
+    uint8_t *instruction;
 }
 
 @property (nonatomic, assign) id<BFInterpreterDelegate> delegate;
-@property (nonatomic, copy) NSString *script;
 
 @property (nonatomic, copy) BFInterpreterChracterOutputBlock willInterpret;
 @property (nonatomic, copy) BFInterpreterChracterOutputBlock generatedOutput;
@@ -46,6 +45,8 @@ typedef char(^BFInterpreterCharacterInputBlock)();
 - (void)executeAsync;
 
 - (BOOL)executeStep;
+
+- (void)setScript:(NSString *)script;
 
 - (id)init;
 - (id)initWithMemory:(size_t)size; // Designated initializer
@@ -57,7 +58,7 @@ typedef char(^BFInterpreterCharacterInputBlock)();
 @protocol BFInterpreterDelegate <NSObject>
 @optional
 
-- (void)interpreter:(BFInterpreter *)interpreter willInterpretCharacter:(unichar)character;
+- (void)interpreter:(BFInterpreter *)interpreter willInterpretCharacter:(char)character;
 - (void)interpreter:(BFInterpreter *)interpreter generatedOutput:(char)output;
 
 @required
@@ -67,5 +68,5 @@ typedef char(^BFInterpreterCharacterInputBlock)();
 
 @interface BFInterpreter (SubclassOverride)
 - (NSCharacterSet *)validCharacters; // Return a character set with valid characters for the dialect. All other characters will be ignored when interpreting the script
-- (BOOL)executeCharacter:(unichar)character; // Execute the action associated with the given character. Return NO to stop execution, YES to advance to the next character.
+- (BOOL)executeCharacter:(char)character; // Execute the action associated with the given character. Return NO to stop execution, YES to advance to the next character.
 @end
