@@ -18,23 +18,9 @@
 
 #import "BFInterpreter.h"
 
-@interface BFLoopEntry : NSObject
-{
-    uint8_t *begin;
-    uint8_t *end;
-}
-
-@property (nonatomic, readonly) uint8_t *begin;
-@property (nonatomic, readonly) uint8_t *end;
-
-- (id)initWithBegin:(uint8_t *)tbegin andEnd:(uint8_t *)tend;
-
-@end
-
 @interface BFInterpreter ()
 {
     BOOL executing;
-    NSMutableArray *loopEntries;
     
     id<BFInterpreterDelegate> delegate;
     BOOL delegateSupportsWillInterpret;
@@ -120,38 +106,19 @@
             break;
             
         case '[':
-        {
-            uint8_t *i = instruction;
-            while(*(i ++) != ']')
-            {}
-            
-            if(*pointer)
+            if(*pointer == 0)
             {
-                BFLoopEntry *entry = [[BFLoopEntry alloc] initWithBegin:instruction andEnd:i];
-
-                [loopEntries addObject:entry];
-                [entry release];
-                
-                break;
+                while(*(instruction ++) != ']')
+                {}
             }
-            
-            instruction = i;
-        }
             break;
             
         case ']':
-        {
-            BFLoopEntry *entry = [loopEntries lastObject];
-            NSAssert(entry, @"BFInterpreter encountered ']' but no loop entry found!");
-            
             if(*pointer)
             {
-                instruction = [entry begin];
-                break;
+                while(*(--instruction) != '[')
+                {}
             }
-            
-            [loopEntries removeLastObject];
-        }
             break;
             
         case '\0':
@@ -232,6 +199,7 @@
         pointer = memory;
         memset(memory, 0, memorySize);
         
+        scriptSize = 0;
         script = malloc([tscript length] + 1);
         instruction = script;
         
@@ -243,6 +211,7 @@
             if([allowedCharacters characterIsMember:character])
             {
                 *instruction ++ = (uint8_t)character;
+                scriptSize ++;
             }
         }
         
@@ -265,8 +234,6 @@
         memorySize = size;
         memory = pointer = malloc(memorySize);
         memoryLimit = memory + memorySize;
-        
-        loopEntries = [[NSMutableArray alloc] init];
         
         if(!memory)
         {
@@ -306,32 +273,11 @@
     if(script)
         free(script);
     
-    [loopEntries release];
-    
     Block_release(willInterpret);
     Block_release(generatedOutput);
     Block_release(needsInput);
     
     [super dealloc];
-}
-
-@end
-
-#pragma mark -
-#pragma mark BFLoopEntry
-
-@implementation BFLoopEntry
-@synthesize begin, end;
-
-- (id)initWithBegin:(uint8_t *)tbegin andEnd:(uint8_t *)tend
-{
-    if((self = [super init]))
-    {
-        begin = tbegin;
-        end = tend;
-    }
-    
-    return self;
 }
 
 @end

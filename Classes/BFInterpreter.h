@@ -33,6 +33,7 @@ typedef char(^BFInterpreterCharacterInputBlock)();
     
     uint8_t *script;
     uint8_t *instruction;
+    size_t scriptSize;
 }
 
 @property (nonatomic, assign) id<BFInterpreterDelegate> delegate;
